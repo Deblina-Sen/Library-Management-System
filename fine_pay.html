@@ -4,43 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check Book Return Status</title>
+    <title>Book Payment</title>
     <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to a CSS file -->
-    <script>
-        function checkReturn() {
-            const expectedReturnDate = new Date(document.getElementById("expected-date").value);
-            const actualReturnDate = new Date(document.getElementById("actual-date").value);
-            const resultDiv = document.getElementById("result");
-
-            if (actualReturnDate > expectedReturnDate) {
-                resultDiv.textContent = "The book has not been returned on time.";
-                resultDiv.style.color = "red";
-            } else {
-                resultDiv.textContent = "The book has been returned on time.";
-                resultDiv.style.color = "green";
-            }
-        }
-    </script>
 </head>
 
 <body>
     <header>
-        <h1>Check Book Return Status</h1>
+        <h1>Library Book Payment</h1>
     </header>
 
     <main>
-        <section class="check-return-form">
-            <h2>Enter Return Details</h2>
-            <form onsubmit="event.preventDefault(); checkReturn();">
-                <label for="expected-date">Expected Return Date:</label>
-                <input type="date" id="expected-date" required>
+        <section class="payment-details">
+            <h2>Payment for Book: C Programming</h2>
+            <p><strong>Author:</strong> T jayapravan</p>
+            <p><strong>Price:</strong> 15.00</p>
 
-                <label for="actual-date">Actual Return Date:</label>
-                <input type="date" id="actual-date" required>
+            <form action="/process-payment" method="POST">
+                <label for="name">Cardholder Name:</label>
+                <input type="text" id="name" name="name" required>
 
-                <button type="submit">Check Status</button>
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" required pattern="\d{16}"
+                    placeholder="1234 5678 9012 3456">
+
+                <label for="expiry">Expiry Date:</label>
+                <input type="month" id="expiry" name="expiry" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required pattern="\d{3}" placeholder="123">
+
+                <button type="submit">Pay Now</button>
             </form>
-            <div id="result"></div>
         </section>
     </main>
 
