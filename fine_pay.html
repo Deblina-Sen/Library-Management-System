@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Book Return Status</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to a CSS file -->
+    <script>
+        function checkReturn() {
+            const expectedReturnDate = new Date(document.getElementById("expected-date").value);
+            const actualReturnDate = new Date(document.getElementById("actual-date").value);
+            const resultDiv = document.getElementById("result");
+
+            if (actualReturnDate > expectedReturnDate) {
+                resultDiv.textContent = "The book has not been returned on time.";
+                resultDiv.style.color = "red";
+            } else {
+                resultDiv.textContent = "The book has been returned on time.";
+                resultDiv.style.color = "green";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Check Book Return Status</h1>
+    </header>
+
+    <main>
+        <section class="check-return-form">
+            <h2>Enter Return Details</h2>
+            <form onsubmit="event.preventDefault(); checkReturn();">
+                <label for="expected-date">Expected Return Date:</label>
+                <input type="date" id="expected-date" required>
+
+                <label for="actual-date">Actual Return Date:</label>
+                <input type="date" id="actual-date" required>
+
+                <button type="submit">Check Status</button>
+            </form>
+            <div id="result"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Library Name. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
